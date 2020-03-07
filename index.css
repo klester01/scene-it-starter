@@ -12,5 +12,11 @@ body {
 
 .results {
 	margin-top: 20px;
+	
+}
+
+h5 {
+	font-size: medium;
+	font-weight: bold;
 }
 
