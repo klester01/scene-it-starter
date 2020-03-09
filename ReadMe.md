@@ -1,2 +1,6 @@
-Issues I am having:
-a). My search feature is not working prpperly. When I search for a movie, all 10 movies appear in the window. Is that correct?
+Team,
+
+After moving to part 2, I realized my part one search bar is working as designed. It will bring back all movies on the data.js file. 
+
+Thanks, 
+kel
