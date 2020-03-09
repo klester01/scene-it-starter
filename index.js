@@ -20,42 +20,45 @@ document.addEventListener('DOMContentLoaded', function () { //creating an event 
 
     }
 
-    //var movieContainer = document.getElementById("movie-container");
-    var searchList = document.getElementById('search-form').addEventListener('submit', function (e) {
+    var movieContainer = document.getElementById("movie-container");
+    var searchList = document.getElementById("search-form");
+    searchList.addEventListener("submit", function (e) {
         e.preventDefault();
-        searchList.innerHTML = renderMovies(movieData);
-    })
+        movieContainer.innerHTML = renderMovies(movieData);
+    });
+
+
+});
     //--------------------------OMIT THESE LINES TO CLEAR MOVIES FROM SCREEN-----
 
-    /*
-    var movieContainer = document.getElementById("movie-container");
-    movieContainer.innerHTML = renderMovies(movieData);
-    */
+/*
+var movieContainer = document.getElementById("movie-container");
+movieContainer.innerHTML = renderMovies(movieData);
+*/
 
 
 
     //--------------------------OMIT THESE LINES TO CLEAR MOVIES FROM SCREEN-----------------------------
 
     //var movieContainer = document.getElementById("movie-container");
-    /*
-    var movieSearchBar = document.forms["search-form"].querySelector('input');//created a variable that selects the movies from the movie container
-    movieSearchBar.addEventListener("keyup", function (e) {
-        e.preventDefault();
-        var movieContainers = document.getElementById("movie-container").toLowerCase();
-        Array.from(movieContainers).forEach(function (movieContainer) {
-            var bookTitles = movieData.textContent;
-            if (bookTitles.toLowerCase().indexOf(movieContainers) != -1) {
-                movieContainers.style.display = 'block';
+/*
+var movieSearchBar = document.forms["search-form"].querySelector('input');//created a variable that selects the movies from the movie container
+movieSearchBar.addEventListener("keyup", function (e) {
+    e.preventDefault();
+    var movieContainers = document.getElementById("movie-container").toLowerCase();
+    Array.from(movieContainers).forEach(function (movieContainer) {
+        var bookTitles = movieData.textContent;
+        if (bookTitles.toLowerCase().indexOf(movieContainers) != -1) {
+            movieContainers.style.display = 'block';
 
-            } else {
-                movieContainers.style.display = 'none';
-            }
-        })
-
-    });
-    return movieContainers;
-
-    movieContainers.innerHTML = renderMovies(movieData);//rendering the results onto the page using innerHTML
-    */
+        } else {
+            movieContainers.style.display = 'none';
+        }
+    })
 
 });
+return movieContainers;
+
+movieContainers.innerHTML = renderMovies(movieData);//rendering the results onto the page using innerHTML
+*/
+
