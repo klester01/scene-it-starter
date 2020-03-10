@@ -9,7 +9,9 @@ document.addEventListener('DOMContentLoaded', function () { //creating an event 
 				<img class="card-img-top" src="${currentMovie.Poster}"/><!--movie posters go here-->
 				<h5 class="movie-title card-title"> ${currentMovie.Title}</h5> <!--movie title go here-->
 				<p class="movie-release-date badge badge-secondary">${currentMovie.Year}</p><!--movie release date go here-->
-                <a href="#" class="btn btn-primary">Add Movie</a>
+                <a href="#" class="btn btn-primary onclick = saveToWatchList(${currentMovie.imdbID})">Add Movie</a><!--inline styling for calling savetoWatchList function with
+                the paramters of template literal currentMovie.imdbID-->
+    
                 
             </div>
 			</div>
@@ -29,3 +31,20 @@ document.addEventListener('DOMContentLoaded', function () { //creating an event 
 
 
 });
+//saveToWatchList
+function saveToWatchList(imdbID) { //defining the function within the block
+    var movie = movieData.find(function (currentMovie) {  //.find locate the first element in an array that matches the parameter being passed. 
+        return currentMovie.imdbID == imdbID;
+    });
+
+    var watchlistJSON = localStorage.getItem("watchlist");
+    var watchlist = JSON.parse(watchlistJSON);
+    if (watchlist == null) {
+        watchlist = [];
+    }
+    watchlist.push(movie);//pushing movie to watchlist
+    watchlistJSON = JSON.stringify(watchlist);
+    localStorage.setItem("watchlist", watchlistJSON);
+
+
+}
