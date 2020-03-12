@@ -26,26 +26,37 @@ document.addEventListener('DOMContentLoaded', function () { //creating an event 
     var searchList = document.getElementById("search-form");
     searchList.addEventListener("submit", function (e) {
         e.preventDefault();
-        movieContainer.innerHTML = renderMovies(movieData);
-    });
+        //adding search ability
+        var searchString = document.getElementById("search-bar").value;//why are we targeting the search-bar?
+        var urlEncodedSearchString = encodeURIComponent(searchString);
+        axios.get("http://www.omdbapi.com/?apikey=4367f1ab&s=" + urlEncodedSearchString)
+            .then(function (response) {
+                console.log(response.data)
+                movieArray = response.data.Search;
+                movieHTML = renderMovies(response.data.Search);//return line for movieHTML
+                movieContainer.innerHTML = renderMovies(response.data.Search)
+            })
+
+    })
 
 
-});
+})
 //saveToWatchList
 
+var movieArray = [];
 
 function saveToWatchList(imdbID) { //defining the function within the block
-    var movie = movieData.find(function (currentMovie) {  //.find locate the first element in an array that matches the parameter being passed. 
+    var movie = movieArray.find(function (currentMovie) {  //.find locate the first element in an array that matches the parameter being passed. 
         console.log("the movie id is " + imdbID);
         return currentMovie.imdbID == imdbID;
     })
 
-    var watchlistJSON = localStorage.getItem("watchlist");
+    var watchlistJSON = localStorage.getItem("watch-list");
     var watchlist = JSON.parse(watchlistJSON);
     if (watchlist == null) {
         watchlist = [];
     };
     watchlist.push(movie);//pushing movie to watchlist
     watchlistJSON = JSON.stringify(watchlist);
-    localStorage.setItem("watchlist", watchlistJSON);
+    localStorage.setItem("watch-list", watchlistJSON);
 }
