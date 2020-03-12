@@ -32,7 +32,8 @@ document.addEventListener('DOMContentLoaded', function () { //creating an event 
         axios.get("http://www.omdbapi.com/?apikey=4367f1ab&s=" + urlEncodedSearchString)
             .then(function (response) {
                 console.log(response.data)
-                movieArray = response.data.Search;
+                movieArray = response.data.Search;//added variable to collect response from api call. Being used with the global movieArray variable so that it can 
+                //be passed into the saveToWatchList function
                 movieHTML = renderMovies(response.data.Search);//return line for movieHTML
                 movieContainer.innerHTML = renderMovies(response.data.Search)
             })
@@ -43,10 +44,11 @@ document.addEventListener('DOMContentLoaded', function () { //creating an event 
 })
 //saveToWatchList
 
-var movieArray = [];
+var movieArray = []; //collects the response.data.Search to pass into saveToWatchList function below
 
 function saveToWatchList(imdbID) { //defining the function within the block
-    var movie = movieArray.find(function (currentMovie) {  //.find locate the first element in an array that matches the parameter being passed. 
+    var movie = movieArray.find(function (currentMovie) {  //.find locate the first element in an array that matches the parameter being passed. Replaced movieData.find
+        //with movieArray.find (new global variable) from original movie list with data coming from api call with new movie list search
         console.log("the movie id is " + imdbID);
         return currentMovie.imdbID == imdbID;
     })
